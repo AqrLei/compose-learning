@@ -25,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.composeone.ui.theme.ComposeOneTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
 fun NewsStory() {
     val countState = remember{ mutableStateOf(0)}
 
-    MaterialTheme() {
+    ComposeOneTheme() {
         Column(modifier = Modifier.fillMaxHeight()) {
             Column(modifier = Modifier
                 .weight(1f)
@@ -85,16 +86,13 @@ fun NewsStory() {
 @Composable
 fun Counter(count: Int, updateCount: (Int) ->Unit) {
     val isSelected  = remember { mutableStateOf(value = false) }
-    val backgroundColor = animateColorAsState(targetValue = if (isSelected.value) Color.Green else Color.Transparent )
+    val textColor = animateColorAsState(targetValue = if (isSelected.value) Color.Green else Color.White )
 
     Button(onClick = {
         isSelected.value = !isSelected.value
         updateCount(count+1)
     }) {
-        Text(
-            text = "I've been clicked ${count+1} times",
-            modifier = Modifier.background(color = backgroundColor.value)
-        )
+        Text(text = "I've been clicked ${count+1} times", color = textColor.value)
     }
 
 }
