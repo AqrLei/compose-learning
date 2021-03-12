@@ -31,6 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.composeone.ui.custom.firstBaselineToTop
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +51,8 @@ fun Page() {
                     Text(text = "Compose-Learning")
                 },
                 actions = {
-                    IconButton(onClick = {  }) {
-                        Icon(Icons.Filled.Favorite, contentDescription =null )
+                    IconButton(onClick = { }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = null)
 
                     }
                 }
@@ -77,6 +78,13 @@ fun BodyContent(modifier: Modifier = Modifier) {
             thickness = 16.dp
         )
         CounterWrapper()
+
+
+        Divider(
+            modifier = Modifier.padding(bottom = 20.dp),
+            color = Color.Transparent,
+            thickness = 16.dp
+        )
     }
 
 }
@@ -84,7 +92,7 @@ fun BodyContent(modifier: Modifier = Modifier) {
 @Composable
 fun NewsStory(modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier, state = rememberLazyListState()) {
-        items(100) {
+        items(2) {
             Image(
                 painter = painterResource(
                     id = R.drawable.header
@@ -175,8 +183,25 @@ fun Counter(count: Int, updateCount: (Int) -> Unit) {
 
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     Page()
 }
+
+
+// test
+//@Preview(showBackground = true)
+@Composable
+fun TextBaselineTopPadding() {
+    Text(text = "Hi there!", Modifier.firstBaselineToTop(32.dp))
+}
+
+//@Preview(showBackground = true)
+@Composable
+fun TextNormalTopPadding() {
+    Text(text = "Hi there!", Modifier.padding(top = 32.dp))
+
+}
+
